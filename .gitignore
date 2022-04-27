@@ -375,10 +375,10 @@ cmake-build-release/
 build/
 bin/
 3rdparty/assimp/
-3rdparty/glfw/
-3rdparty/glm/
-3rdparty/imgui/
-3rdparty/stb_image/
-3rdparty/entt/
-3rdparty/tinyobjloader/
-3rdparty/json11/
+# 3rdparty/glfw/
+# 3rdparty/glm/
+# 3rdparty/imgui/
+# 3rdparty/stb_image/
+# 3rdparty/entt/
+# 3rdparty/tinyobjloader/
+# 3rdparty/json11/
