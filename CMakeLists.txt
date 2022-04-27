@@ -35,3 +35,4 @@ set (OBJ_LOADER_FILE ${TINY_OBJ_INCLUDE}/tiny_obj_loader.cc ${TINY_OBJ_INCLUDE}/
 add_subdirectory(3rdparty/glfw)
 
 add_subdirectory(Violet)
+add_subdirectory(Evergarden/Editor)
