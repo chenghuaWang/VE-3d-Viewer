@@ -1,3 +1,9 @@
+/*!
+ *@author   chenghua.wang
+ *@file     Violet/rsc/violet_app.cpp
+ *@brief    A simple orgnized launcher class.
+ */
+
 #include "../include/violet_app.hpp"
 
 #define STB_IMAGE_IMPLEMENTATION

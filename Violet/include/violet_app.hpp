@@ -1,3 +1,9 @@
+/*!
+ *@author   chenghua.wang
+ *@file     Violet/include/violet_app.hpp
+ *@brief    A simple orgnized launcher class.
+ */
+
 #ifndef H_WIOLET_HPP_
 #define H_WIOLET_HPP_
 
