@@ -29,10 +29,16 @@ set(TINY_OBJ_INCLUDE ${ThirdParty_DIR}/tinyobjloader)
 set(ENTT_INCLUDE ${ThirdParty_DIR}/entt/)
 file(GLOB_RECURSE IMG_SRC ${IMGUI_INCLUDE}/*.cpp)
 file(GLOB_RECURSE IMG_HDR ${IMGUI_INCLUDE}/*.h)
-set (OBJ_LOADER_FILE ${TINY_OBJ_INCLUDE}/tiny_obj_loader.cc ${TINY_OBJ_INCLUDE}/tiny_obj_loader.h)
+set(OBJ_LOADER_FILE ${TINY_OBJ_INCLUDE}/tiny_obj_loader.cc ${TINY_OBJ_INCLUDE}/tiny_obj_loader.h)
 
+# Self file Variable
+set(V_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Evergarden)
+set(V_CORE_INCLUDE ${V_DIR}/Core/include)
+set(V_EDITOR_INCLUDE ${V_DIR}/Editor/include)
 
 add_subdirectory(3rdparty/glfw)
 
 add_subdirectory(Violet)
 add_subdirectory(Evergarden/Editor)
+add_subdirectory(Evergarden/Core)
+add_subdirectory(Evergarden/App)
