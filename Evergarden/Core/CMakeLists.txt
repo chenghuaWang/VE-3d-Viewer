@@ -15,6 +15,10 @@ endif()
 
 add_compile_definitions("VE_ROOT_DIR=${VE_ROOT_DIR}")
 
+include_directories(${ThirdParty_DIR})
+include_directories(${IMGUI_INCLUDE})
+include_directories(${GLFW_INCLUDE})
+include_directories(${GLAD_INCLUDE})
 
 file(GLOB_RECURSE Evergarden_Core src/*.cpp)
 file(GLOB_RECURSE Evergarden_Core include/*.hpp)
@@ -29,7 +33,7 @@ set(Evergarden_Core_3rd
 
 add_library(Evergarden_Core SHARED ${Evergarden_Core_src} ${Evergarden_Core_include} ${Evergarden_Core_3rd})
 
-target_link_libraries(Violet 
+target_link_libraries(Evergarden_Core 
   glfw
   opengl32
 )

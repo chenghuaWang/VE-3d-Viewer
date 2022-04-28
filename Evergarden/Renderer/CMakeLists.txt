@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(Evergarden VERSION 0.0.1)
+project(Evergarden_Renderer VERSION 0.0.1)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -15,38 +15,25 @@ endif()
 
 add_compile_definitions("VE_ROOT_DIR=${VE_ROOT_DIR}")
 
-include_directories(${V_DIR})
-include_directories(${V_CORE_INCLUDE})
-include_directories(${V_EDITOR_INCLUDE})
-
 include_directories(${ThirdParty_DIR})
 include_directories(${IMGUI_INCLUDE})
 include_directories(${GLFW_INCLUDE})
 include_directories(${GLAD_INCLUDE})
 
-set(Evergarden_src 
-	src/app_window.cpp
-	src/Application.cpp
-  main.cpp
-)
+file(GLOB_RECURSE Evergarden_Renderer_src src/*.cpp)
+file(GLOB_RECURSE Evergarden_Renderer_include include/*.hpp)
 
-set(Evergarden_include 
-	include/app_window.hpp
-  include/Application.hpp
-)
-
-set(Evergarden_3rd 
-  ${IMG_SRC} 
-  ${IMG_HDR}
+set(Evergarden_Renderer_3rd 
+  ${STB_IMAGE_INCLUDE}/stb_image.cpp
+  ${STB_IMAGE_INCLUDE}/stb_image.h
   ${GLAD_INCLUDE}/glad/glad.h
   ${GLAD_INCLUDE}/KHR/khrplatform.h
   ${GLAD_SRC}/glad.c
 )
 
-add_executable(Evergarden ${Evergarden_src} ${Evergarden_include} ${Evergarden_3rd})
-target_link_libraries(Evergarden 
+add_library(Evergarden_Renderer SHARED ${Evergarden_Renderer_src} ${Evergarden_Renderer_include} ${Evergarden_Renderer_3rd})
+
+target_link_libraries(Evergarden_Renderer
   glfw
   opengl32
-  Evergarden_Core
-  Evergarden_Editor
 )

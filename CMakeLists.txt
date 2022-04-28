@@ -4,7 +4,8 @@ project(VioletEvergarden VERSION 0.0.1)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(BUILD_SHARED_LIBS OFF)
+# set(BUILD_SHARED_LIBS OFF)
+set(BUILD_STATIC_LIBS TRUE)
 
 if(PROJECT_SOURCE_DIR STREQUAL PROJECT_BINARY_DIR)
   message(
@@ -36,9 +37,11 @@ set(V_DIR ${CMAKE_CURRENT_SOURCE_DIR}/Evergarden)
 set(V_CORE_INCLUDE ${V_DIR}/Core/include)
 set(V_EDITOR_INCLUDE ${V_DIR}/Editor/include)
 
-add_subdirectory(3rdparty/glfw)
+add_subdirectory(3rdparty/glfw EXCLUDE_FROM_ALL)
+add_subdirectory(3rdparty/glm EXCLUDE_FROM_ALL)
 
 add_subdirectory(Violet)
+add_subdirectory(Evergarden/Renderer)
 add_subdirectory(Evergarden/Editor)
 add_subdirectory(Evergarden/Core)
 add_subdirectory(Evergarden/App)
