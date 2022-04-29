@@ -33,6 +33,7 @@ namespace evergarden {
     class MainWindowPayload {
     public:
         MainWindowPayload(): m_W(1920), m_H(1080), m_title("Evergarden") {};
+        MainWindowPayload(std::string title): m_W(1920), m_H(1080), m_title(title) {};
         MainWindowPayload(uint32_t w, uint32_t h, std::string &title): m_W(w), m_H(h), m_title(title) {};
         ~MainWindowPayload() = default;
 
@@ -55,14 +56,14 @@ namespace evergarden {
      * Application class will use this Mainwindow class to create desktop app
      * ui context, and organize layer on it.
      */
-    class MainWindow {
+    class __declspec(dllexport) MainWindow {
     public:
         MainWindow() = default;
         virtual ~MainWindow() = default;
         
     public:
         virtual void        onUpdate() = 0;
-        virtual void        setEventCallBack(std::function<void(Event&)> &e) = 0;
+        virtual void        setEventCallBack(const std::function<void(Event&)> &e) = 0;
         virtual void        setVSync(bool enable) = 0;
         virtual bool        isVSync(bool enable) = 0;
         virtual void*       getPlatformWindow() = 0; ///< to get the platform based window. Such as glfw, DX12, WinAPI
@@ -91,17 +92,17 @@ namespace evergarden {
     class MainWindow_OpenGL: public MainWindow {
     public:
         MainWindow_OpenGL(MainWindowPayload &payload);
-        ~MainWindow_OpenGL()                                        override;
+        ~MainWindow_OpenGL()                                                override;
 
     public:
-        void        onUpdate()                                      override;
-        void        setEventCallBack(std::function<void(Event&)> &e)override { m__opengl_callback_data_.m_event_call_back_=e; };
-        void        setVSync(bool enable)                           override;
-        bool        isVSync(bool enable)                            override { return m__opengl_callback_data_.m_Vsync; };
-        void*       getPlatformWindow()                             override { return m_handle; };
-        uint32_t    W()                                             override { return m__opengl_callback_data_.m_w; };
-        uint32_t    H()                                             override { return m__opengl_callback_data_.m_h; };
-        void        getSize(uint32_t &w, uint32_t &h)               override { w=W(); h=H(); };
+        void        onUpdate()                                              override;
+        void        setEventCallBack(const std::function<void(Event&)> &e)  override { m__opengl_callback_data_.m_event_call_back_=e; };
+        void        setVSync(bool enable)                                   override;
+        bool        isVSync(bool enable)                                    override { return m__opengl_callback_data_.m_Vsync; };
+        void*       getPlatformWindow()                                     override { return m_handle; };
+        uint32_t    W()                                                     override { return m__opengl_callback_data_.m_w; };
+        uint32_t    H()                                                     override { return m__opengl_callback_data_.m_h; };
+        void        getSize(uint32_t &w, uint32_t &h)                       override { w=W(); h=H(); };
 
     private:
         virtual     void __init__(MainWindowPayload &payload);
