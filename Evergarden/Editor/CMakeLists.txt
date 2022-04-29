@@ -34,11 +34,13 @@ set(Evergarden_Editor_3rd
   ${GLAD_SRC}/glad.c
 )
 
-add_library(Evergarden_Editor SHARED ${Evergarden_Editor_src} ${Evergarden_Editor_include} ${Evergarden_Editor_3rd})
+# add_library(Evergarden_Editor SHARED ${Evergarden_Editor_src} ${Evergarden_Editor_include} ${Evergarden_Editor_3rd})
+add_library(Evergarden_Editor STATIC ${Evergarden_Editor_src} ${Evergarden_Editor_include} ${Evergarden_Editor_3rd})
 
 target_link_libraries(Evergarden_Editor
   glfw
   opengl32
+  Evergarden_App
   Evergarden_Core
   Evergarden_Renderer
 )
