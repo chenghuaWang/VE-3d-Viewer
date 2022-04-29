@@ -24,7 +24,29 @@
 #define SCENE_LAYER_NAME        "Scene-Layer"
 #define SE_LAYER_NAME           "ShaderEditor-Layer"
 
+#include <string>
+#include <iostream>
+#include <vector>
+
+#include <imgui/imgui.h>
+#include <imgui/backend/imgui_impl_glfw.h>
+#include <imgui/backend/imgui_impl_opengl3.h>
+#include <imgui/imGuiFileDialog.h>
+#include <imgui/imgui_internal.h>
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+
+#include <imgui/zmo/ImGuizmo.h>
+
+#include "Core/include/core_event_sys.hpp"
+
+#define EVENT_CALL_BACK private
+
 namespace evergarden {
+
+    static std::string get_abs_path(std::string rhs) {
+        return EDITOR_PXSR(VE_ROOT_DIR) + rhs;
+    }
 
 } //! namespace evergarden
 
