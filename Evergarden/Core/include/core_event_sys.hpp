@@ -125,19 +125,19 @@ namespace evergarden {
 
     class KeyEvent: public Event {
 	public:
-		KeyCodes GetKeyCode() const { return m_KeyCode; }
+		int GetKeyCode() const { return m_KeyCode; }
 
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 
 	protected:
-		KeyEvent(const KeyCodes keycode): m_KeyCode(keycode) {}
+		KeyEvent(const int keycode): m_KeyCode(keycode) {}
 
-		KeyCodes m_KeyCode;
+		int m_KeyCode;
 	};
 
     class KeyPressedEvent: public KeyEvent {
 	public:
-		KeyPressedEvent(const KeyCodes keycode, const uint16_t repeatCount): KeyEvent(keycode), m_RepeatCount(repeatCount) {}
+		KeyPressedEvent(const int keycode, const uint16_t repeatCount): KeyEvent(keycode), m_RepeatCount(repeatCount) {}
 
 		uint16_t GetRepeatCount() const { return m_RepeatCount; }
 
@@ -155,7 +155,7 @@ namespace evergarden {
 
     class KeyReleasedEvent: public KeyEvent {
 	public:
-		KeyReleasedEvent(const KeyCodes keycode): KeyEvent(keycode) {}
+		KeyReleasedEvent(const int keycode): KeyEvent(keycode) {}
 
 		std::string ToString() const override {
 			std::stringstream ss;
@@ -168,7 +168,7 @@ namespace evergarden {
 
 	class KeyTypedEvent: public KeyEvent {
 	public:
-		KeyTypedEvent(const KeyCodes keycode): KeyEvent(keycode) {}
+		KeyTypedEvent(const int keycode): KeyEvent(keycode) {}
 
 		std::string ToString() const override {
 			std::stringstream ss;
@@ -226,19 +226,19 @@ namespace evergarden {
 
 	class MouseButtonEvent: public Event {
 	public:
-		MouseCode GetMouseButton() const { return m_Button; }
+		int GetMouseButton() const { return m_Button; }
 
 		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput | EventCategoryMouseButton)
 	
     protected:
-		MouseButtonEvent(const MouseCode button): m_Button(button) {}
+		MouseButtonEvent(const int button): m_Button(button) {}
 
-		MouseCode m_Button;
+		int m_Button;
 	};
 
 	class MouseButtonPressedEvent : public MouseButtonEvent {
 	public:
-		MouseButtonPressedEvent(const MouseCode button): MouseButtonEvent(button) {}
+		MouseButtonPressedEvent(const int button): MouseButtonEvent(button) {}
 
 		std::string ToString() const override {
 			std::stringstream ss;
@@ -251,7 +251,7 @@ namespace evergarden {
 
 	class MouseButtonReleasedEvent: public MouseButtonEvent {
 	public:
-		MouseButtonReleasedEvent(const MouseCode button): MouseButtonEvent(button) {}
+		MouseButtonReleasedEvent(const int button): MouseButtonEvent(button) {}
 
 		std::string ToString() const override {
 			std::stringstream ss;
