@@ -25,13 +25,11 @@ include_directories(${GLFW_INCLUDE})
 include_directories(${GLAD_INCLUDE})
 
 set(Evergarden_src 
-	src/app_window.cpp
 	src/Application.cpp
   main.cpp
 )
 
 set(Evergarden_include 
-	include/app_window.hpp
   include/Application.hpp
 )
 
@@ -49,4 +47,5 @@ target_link_libraries(Evergarden
   opengl32
   Evergarden_Core
   Evergarden_Editor
+  Evergarden_Renderer
 )
