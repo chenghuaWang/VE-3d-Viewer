@@ -23,7 +23,7 @@ namespace evergarden {
      * blocking-events method for Layer to react the event send by
      * application our other layers.
      */
-    class Layer {
+    class __declspec(dllexport) Layer {
     public:
         Layer(std::string layer_name): m_layer_name_(layer_name) {};
         virtual ~Layer() = default;
@@ -55,7 +55,7 @@ namespace evergarden {
 
     }; //! class Layer
 
-    class LayerStack {
+    class __declspec(dllexport) LayerStack {
     public:
         LayerStack() = default;
         ~LayerStack();
@@ -78,7 +78,7 @@ namespace evergarden {
 
 namespace evergarden {
  
-    class ImGuiLayer: public Layer {
+    class __declspec(dllexport) ImGuiLayer: public Layer {
     public:
         ImGuiLayer(std::shared_ptr<MainWindow> window);
         ~ImGuiLayer() override;
