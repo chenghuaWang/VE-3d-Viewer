@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(Evergarden VERSION 0.0.1)
+project(Evergarden_App VERSION 0.0.1)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -24,16 +24,15 @@ include_directories(${IMGUI_INCLUDE})
 include_directories(${GLFW_INCLUDE})
 include_directories(${GLAD_INCLUDE})
 
-set(Evergarden_src 
+set(Evergarden_App_src 
 	src/Application.cpp
-  main.cpp
 )
 
-set(Evergarden_include 
+set(Evergarden_App_include 
   include/Application.hpp
 )
 
-set(Evergarden_3rd 
+set(Evergarden_App_3rd 
   ${IMG_SRC} 
   ${IMG_HDR}
   ${GLAD_INCLUDE}/glad/glad.h
@@ -41,8 +40,9 @@ set(Evergarden_3rd
   ${GLAD_SRC}/glad.c
 )
 
-add_executable(Evergarden ${Evergarden_src} ${Evergarden_include} ${Evergarden_3rd})
-target_link_libraries(Evergarden 
+# add_library(Evergarden_App SHARED ${Evergarden_App_src} ${Evergarden_App_include} ${Evergarden_App_3rd})
+add_library(Evergarden_App STATIC ${Evergarden_App_src} ${Evergarden_App_include} ${Evergarden_App_3rd})
+target_link_libraries(Evergarden_App 
   glfw
   opengl32
   Evergarden_Core
