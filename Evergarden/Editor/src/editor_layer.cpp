@@ -51,7 +51,7 @@ namespace evergarden {
             style.Colors[ImGuiCol_WindowBg].w = 1.0f;
         }
 
-        io.Fonts->AddFontFromFileTTF(get_abs_path("/Asset/font/JetBrainsMono-Medium.ttf").c_str(), 20.0f);
+        io.Fonts->AddFontFromFileTTF(get_abs_path("/Asset/font/JetBrainsMono-Medium.ttf").c_str(), 24.0f);
 
         GLFWwindow* window = static_cast<GLFWwindow*>(m_window->getPlatformWindow());
 
