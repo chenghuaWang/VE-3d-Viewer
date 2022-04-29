@@ -15,6 +15,7 @@ endif()
 
 add_compile_definitions("VE_ROOT_DIR=${VE_ROOT_DIR}")
 
+include_directories(${V_DIR})
 include_directories(${ThirdParty_DIR})
 include_directories(${IMGUI_INCLUDE})
 include_directories(${GLFW_INCLUDE})
@@ -38,4 +39,6 @@ add_library(Evergarden_Editor SHARED ${Evergarden_Editor_src} ${Evergarden_Edito
 target_link_libraries(Evergarden_Editor
   glfw
   opengl32
+  Evergarden_Core
+  Evergarden_Renderer
 )
