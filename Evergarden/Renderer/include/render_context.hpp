@@ -17,7 +17,7 @@
 
 namespace evergarden {
 
-    class Context {
+    class __declspec(dllexport) Context {
     public:
         virtual void init() = 0;
         virtual void SwapBuffer() = 0;
@@ -29,7 +29,7 @@ namespace evergarden {
 
 namespace evergarden {
 
-    class Context_OpenGL: public Context {
+    class __declspec(dllexport) Context_OpenGL: public Context {
     public:
         Context_OpenGL(GLFWwindow *handle); ///< don not use explict.
 
