@@ -31,7 +31,8 @@ set(Evergarden_Renderer_3rd
   ${GLAD_SRC}/glad.c
 )
 
-add_library(Evergarden_Renderer SHARED ${Evergarden_Renderer_src} ${Evergarden_Renderer_include} ${Evergarden_Renderer_3rd})
+# add_library(Evergarden_Renderer SHARED ${Evergarden_Renderer_src} ${Evergarden_Renderer_include} ${Evergarden_Renderer_3rd})
+add_library(Evergarden_Renderer STATIC ${Evergarden_Renderer_src} ${Evergarden_Renderer_include} ${Evergarden_Renderer_3rd})
 
 target_link_libraries(Evergarden_Renderer
   glfw
