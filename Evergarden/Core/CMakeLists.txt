@@ -31,7 +31,8 @@ set(Evergarden_Core_3rd
   ${GLAD_SRC}/glad.c
 )
 
-add_library(Evergarden_Core SHARED ${Evergarden_Core_src} ${Evergarden_Core_include} ${Evergarden_Core_3rd})
+# add_library(Evergarden_Core SHARED ${Evergarden_Core_src} ${Evergarden_Core_include} ${Evergarden_Core_3rd})
+add_library(Evergarden_Core STATIC ${Evergarden_Core_src} ${Evergarden_Core_include} ${Evergarden_Core_3rd})
 
 target_link_libraries(Evergarden_Core 
   glfw
