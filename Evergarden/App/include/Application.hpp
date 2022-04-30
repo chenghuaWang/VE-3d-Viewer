@@ -41,7 +41,7 @@ namespace evergarden {
         LayerStack                  m_layer_stack;
         bool                        m_window_run = true;
         bool                        m_render_run = true;
-        bool                        m_window_minimize = true;
+        bool                        m_window_minimize = false;
         float                       m_last_frame_time_cnt = 0.f;
         TimeFrame                   m_time_frame;
 
