@@ -20,9 +20,26 @@
 #include <iostream>
 #include <sstream>
 #include <fstream>
+#include <unordered_map>
 
-namespace evergarden {
+#include <stb_image/stb_image.h>
 
-}
+#include <memory>
+
+#include <cinttypes>
+
+#ifdef WIN32
+#define ASSERT(x) {if(!(x)) __debugbreak();}
+#else
+#define ASSERT(x) {if(!(x)) asm("int $3");}
+#endif
+
+#define GLCall(x) GLClearError();\
+    x;\
+    ASSERT(GLLogCall(#x, __FILE__, __LINE__))
+    
+
+void GLClearError();
+bool GLLogCall(const char* function, const char* file, int line);
 
 #endif
