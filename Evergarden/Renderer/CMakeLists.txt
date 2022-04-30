@@ -15,10 +15,13 @@ endif()
 
 add_compile_definitions("VE_ROOT_DIR=${VE_ROOT_DIR}")
 
+include_directories(${V_DIR})
 include_directories(${ThirdParty_DIR})
 include_directories(${IMGUI_INCLUDE})
 include_directories(${GLFW_INCLUDE})
 include_directories(${GLAD_INCLUDE})
+include_directories(${TINY_OBJ_INCLUDE})
+include_directories(${GLM_INCLUDE})
 
 file(GLOB_RECURSE Evergarden_Renderer_src src/*.cpp)
 file(GLOB_RECURSE Evergarden_Renderer_include include/*.hpp)
@@ -29,6 +32,7 @@ set(Evergarden_Renderer_3rd
   ${GLAD_INCLUDE}/glad/glad.h
   ${GLAD_INCLUDE}/KHR/khrplatform.h
   ${GLAD_SRC}/glad.c
+  ${OBJ_LOADER_FILE}
 )
 
 # add_library(Evergarden_Renderer SHARED ${Evergarden_Renderer_src} ${Evergarden_Renderer_include} ${Evergarden_Renderer_3rd})
@@ -37,4 +41,5 @@ add_library(Evergarden_Renderer STATIC ${Evergarden_Renderer_src} ${Evergarden_R
 target_link_libraries(Evergarden_Renderer
   glfw
   opengl32
+  glm_static
 )
