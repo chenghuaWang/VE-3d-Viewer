@@ -89,6 +89,7 @@ namespace evergarden {
         void begin();
         void end();
         void _setEventBlock_(bool enable) { m_event_block_enable = enable; };
+        void __imgui_set_colour__();
 
     private:
         float                       m_time_update = 0;
