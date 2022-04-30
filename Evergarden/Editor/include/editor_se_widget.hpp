@@ -1,3 +1,9 @@
+/*!
+ * @author  chenghua.wang
+ * @file    Evergarden/Editor/include/editor_se_widget.hpp
+ * @brief   Shader editore widget.
+ */
+
 #ifndef H_EDITOR_SE_WIDGET
 #define H_EDITOR_SE_WIDGET
 
