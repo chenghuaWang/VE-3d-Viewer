@@ -21,3 +21,7 @@ bool GLLogCall(const char* function, const char* file, int line) {
     }
     return true;
 }
+
+std::string __get_abs_path__(std::string a){
+    return RENDER_XSR(VE_ROOT_DIR) + a;
+}

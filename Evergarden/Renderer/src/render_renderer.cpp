@@ -33,7 +33,7 @@ namespace evergarden {
     }
 
     void Renderer::endScene() {
-
+        
     }
 
     void Renderer::__submit__(const std::shared_ptr<VertexArray> &vertexArray, const std::shared_ptr<Shader> &shader,
