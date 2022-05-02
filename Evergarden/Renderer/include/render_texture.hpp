@@ -20,7 +20,7 @@ namespace evergarden {
      */
     class Texture {
     public:
-        Texture();
+        Texture() = default;
         virtual ~Texture() = default;
 
     public:

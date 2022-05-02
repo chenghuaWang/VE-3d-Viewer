@@ -40,6 +40,7 @@ namespace evergarden {
         Mesh():c_Type(MeshType::None), c_Name("mesh"), c_Path(" ") {};
         explicit Mesh(const std::string& path);
         explicit Mesh(const MeshType& type);
+        Mesh(const MeshType& type, int sample);
         Mesh(std::vector<Vertex>  vertices, std::vector<uint32_t>  indices);
 
         ~Mesh() = default;
@@ -52,6 +53,9 @@ namespace evergarden {
         static std::shared_ptr<Mesh> Create(const std::string& path) { return std::make_shared<Mesh>(path); }
         static std::shared_ptr<Mesh> Create(const MeshType& type) {
             return std::make_shared<Mesh>(type);
+        }
+        static std::shared_ptr<Mesh> Create(const MeshType& type, int sample) {
+            return std::make_shared<Mesh>(type, sample);
         }
         static std::shared_ptr<Mesh> Create(const std::vector<Vertex>& vertices, const std::vector<uint32_t>& indices) {
             return std::make_shared<Mesh>(vertices, indices);
@@ -71,6 +75,7 @@ namespace evergarden {
         void CreateCube();
         void CreateSphere();
 
+    public:
         void AssimpFileLoader(const std::string &FilePath);
         void ObjFileLoader(const std::string &FilePath);
 

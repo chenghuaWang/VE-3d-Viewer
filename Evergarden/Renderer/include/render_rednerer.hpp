@@ -23,7 +23,7 @@ namespace evergarden {
         static void __init__();
         static void __shutdown__();
 
-        static void OnWindowResize(uint32_t width, uint32_t height);
+        static void OnWindowResize(uint32_t width, uint32_t height); ///< not a call-back function!!!
 
         static void beginScene(Camera& camera);
         static void endScene();

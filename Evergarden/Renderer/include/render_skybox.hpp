@@ -30,6 +30,7 @@ namespace evergarden {
 
     public:
         virtual void bindSkyBox(Camera& camera, uint32_t enter=0)  const = 0;
+        virtual void bindSkyBox(uint32_t enter = 0)                const = 0;
         virtual void bindIrradianceMap(uint32_t enter=0)           const = 0;
         virtual void bindPrefilterMap(uint32_t enter=0)            const = 0;
         virtual void bindBRDFLUTTMap(uint32_t enter=0)             const = 0;
@@ -52,6 +53,7 @@ namespace evergarden {
         std::shared_ptr<Texture2D>& getTexture()            override { return m_Texture; };
 
         void bindSkyBox(Camera& camera, uint32_t enter=0)   const override;
+        void bindSkyBox(uint32_t enter = 0)                 const override;
         void bindIrradianceMap(uint32_t enter=0)            const override;
         void bindPrefilterMap(uint32_t enter=0)             const override;
         void bindBRDFLUTTMap(uint32_t enter=0)              const override;
