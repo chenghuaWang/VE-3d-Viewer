@@ -43,6 +43,44 @@ namespace evergarden {
         GenVertexArray();
     }
 
+    Mesh::Mesh(const MeshType &type, int sample):c_Type(type) {
+        c_HasNormal = true;
+        c_HasTexCoord = true;
+        
+        if (MeshType::Plane == type) {
+            c_Type = MeshType::Plane;
+            for (uint32_t i = 0; i <= sample; ++i) {
+                for (uint32_t j = 0; j <= sample; j++) {
+                    Vertex v{};
+                    v.Position = { (float)i / (float)sample - 0.5f, 0.0f, (float)j / (float)sample - 0.5f };
+                    v.Normal = { 0.0f, 1.0f, 0.0f };
+                    v.TexCoords = { (float)i / (float)sample, (float)j / (float)sample };
+                    c_Vertices.push_back(v);
+                }
+            }
+
+            uint32_t indices[6] = { 0, (uint32_t)(sample + 1), (uint32_t)sample + 2, 0, (uint32_t)sample + 2,1 };
+            for (int k = 0; k < (sample + 1) * sample; k++) {
+                for (unsigned int indice : indices) {
+                    if ((k + 1) % (sample + 1) > 0) {
+                        c_Indices.push_back(indice + k);
+                    }
+                }
+            }
+
+            size_t len_indices = c_Indices.size();
+            for (size_t i = 0; i < len_indices; i += 3) {
+                Triangle triangle = { c_Indices[i],c_Indices[i + 1ul],c_Indices[i + 2ul] };
+                c_Triangles.push_back(triangle);
+        }
+        } else {
+            std::cout << "failed init object from un-plane format." << std::endl;
+        }
+
+        GenTBN();
+        GenVertexArray();
+    }
+
     Mesh::Mesh(std::vector<Vertex> vertices, std::vector<uint32_t> indices):
             c_Type(MeshType::Model), c_Vertices(std::move(vertices)), c_Indices(std::move(indices)) {
 
@@ -73,8 +111,45 @@ namespace evergarden {
     }
 
     void Mesh::CreateSphere() {
-        // TODO from Asset import a sphere.obj file
-        ObjFileLoader(" ");
+//        // TODO from Asset import a sphere.obj file
+//        ObjFileLoader(" ");
+        uint32_t real = 20 * 10;
+        c_Type = MeshType::Sphere;
+
+        for (uint32_t i = 0; i <= real; i++) {
+            for (uint32_t j = 0; j <= real; j++) {
+                Vertex v{};
+                v.Position = {(float) i / (float) real, 0.0f, (float) j / (float) real};
+                v.Normal = {0.0f, 1.0f, 0.0f};
+                v.TexCoords = {(float) i / (float) real, (float) j / (float) real};
+                c_Vertices.push_back(v);
+            }
+        }
+
+        uint32_t indices[6] = { 0, real + 1, real + 2, 0, real + 2,1 };
+
+        for (uint32_t k = 0; k < (real + 1) * real; k++) {
+            for (unsigned int indice : indices) {
+                if ((k + 1) % (real + 1) > 0) {
+                    c_Indices.push_back(indice + k);
+                }
+            }
+        }
+
+        size_t len_indices = c_Indices.size();
+
+        for (size_t i = 0; i < len_indices; i += 3) {
+            Triangle triangle = { c_Indices[i],c_Indices[i + 1ul],c_Indices[i + 2ul] };
+            c_Triangles.push_back(triangle);
+        }
+
+        for (auto& p : c_Vertices) {
+            float phi = glm::radians(360.0f * p.Position.z);
+            float theta = glm::radians(180.0f * p.Position.x - 90.0f);
+            p.Position.x = p.Normal.x = cos(theta) * cos(phi);
+            p.Position.y = p.Normal.y = sin(theta);
+            p.Position.z = p.Normal.z = cos(theta) * sin(phi);
+        }
     }
 
     void Mesh::CreateCube() {
@@ -154,9 +229,10 @@ namespace evergarden {
 
     void Mesh::GenVertexArray() {
         c_VertexArray = VertexArray::Create();
-
         std::shared_ptr<VertexBuffer> vertexBuffer;
-        vertexBuffer = VertexBuffer::Create((float*)(&*c_Vertices.begin()), sizeof(Vertex) * c_Vertices.size());
+        vertexBuffer = VertexBuffer::Create((float*)(c_Vertices.data()), sizeof(Vertex) * c_Vertices.size());
+// TODO
+        //        vertexBuffer = VertexBuffer::Create((float*)(&*c_Vertices.begin()), sizeof(Vertex) * c_Vertices.size());
 
         BufferLayout layout = {
                 {InnerDataType::Vec3f, "a_Position"},
@@ -170,7 +246,9 @@ namespace evergarden {
         c_VertexArray->AddVertexBuffer(vertexBuffer);
 
         std::shared_ptr<IndexBuffer> indexBuffer;
-        indexBuffer = IndexBuffer::Create((uint32_t*)(&*c_Indices.begin()), c_Indices.size());
+// TODO
+        //        indexBuffer = IndexBuffer::Create((uint32_t*)(&*c_Indices.begin()), c_Indices.size());
+        indexBuffer = IndexBuffer::Create((uint32_t*)(c_Indices.data()), c_Indices.size());
         c_VertexArray->AddIndexBuffer(indexBuffer);
     }
 
