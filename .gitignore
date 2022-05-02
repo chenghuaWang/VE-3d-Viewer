@@ -382,3 +382,7 @@ bin/
 # 3rdparty/entt/
 # 3rdparty/tinyobjloader/
 3rdparty/json11/
+Asset/shader/SkBox_brdf.shader
+Asset/shader/SkBox_eq.shader
+Asset/shader/SkBox_Ir.shader
+Asset/shader/SkBox_Pre.shader
