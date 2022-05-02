@@ -13,6 +13,7 @@
 
 #include "editor_base.hpp"
 #include "app_window.hpp"
+#include "Core/include/core_time.hpp"
 
 namespace evergarden {
 
@@ -22,8 +23,11 @@ namespace evergarden {
      * @details Provide a abstract for Imgui Layer. And add multi
      * blocking-events method for Layer to react the event send by
      * application our other layers.
+     *
+     * @note __declspec(dllexport), Don't use this macro, this lib is made
+     * to static by default.
      */
-    class __declspec(dllexport) Layer {
+    class Layer {
     public:
         Layer(std::string layer_name): m_layer_name_(layer_name) {};
         virtual ~Layer() = default;
@@ -33,6 +37,7 @@ namespace evergarden {
         virtual void onAttach(){};
         virtual void onDetach(){};
         virtual void onUpdate(){};
+        virtual void onUpdate(TimeFrame timestep){};
         virtual void onGuiRender(){};
         virtual void onEvent(Event &e){};
 
@@ -55,7 +60,7 @@ namespace evergarden {
 
     }; //! class Layer
 
-    class __declspec(dllexport) LayerStack {
+    class LayerStack {
     public:
         LayerStack() = default;
         ~LayerStack();
@@ -78,7 +83,7 @@ namespace evergarden {
 
 namespace evergarden {
  
-    class __declspec(dllexport) ImGuiLayer: public Layer {
+    class ImGuiLayer: public Layer {
     public:
         ImGuiLayer(std::shared_ptr<MainWindow> window);
         ~ImGuiLayer() override;
