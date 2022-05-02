@@ -62,6 +62,7 @@ namespace evergarden {
     public:
         glm::vec3               m_EmissionColor{1.f, 1.f, 1.f};
         float                   m_Intensity = 1.0f;
+        // TODO
         std::shared_ptr<Shader> m_Shader = Shader::create("D:/Project/Nebula-Engine/Asset/shader/Emission.shader");
     };
 
