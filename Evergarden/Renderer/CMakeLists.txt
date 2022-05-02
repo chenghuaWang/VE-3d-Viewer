@@ -42,4 +42,7 @@ target_link_libraries(Evergarden_Renderer
   glfw
   opengl32
   glm_static
+  Evergarden_Core
+  Evergarden_App
+  Evergarden_Editor
 )
