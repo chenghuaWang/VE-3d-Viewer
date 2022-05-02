@@ -14,11 +14,11 @@ namespace evergarden {
         m_Texture->setData(&defaultData, sizeof(uint32_t));
 
         // TODO
-        m_Eq2SkyBoxShader = Shader::create("D:/Project/Nebula-Engine/Asset/shader/Equirectangular.shader");
-        m_BackgroundShader = Shader::create("D:/Project/Nebula-Engine/Asset/shader/BackGround.shader");
-        m_IrradianceShader = Shader::create("D:/Project/Nebula-Engine/Asset/shader/Irradiance.shader");
-        m_PrefilterShader = Shader::create("D:/Project/Nebula-Engine/Asset/shader/PreFilter.shader");
-        m_BRDFShader = Shader::create("D:/Project/Nebula-Engine/Asset/shader/BRDF.shader");
+        m_Eq2SkyBoxShader = Shader::create(__get_abs_path__("/Asset/shader/SkBox_eq.shader"));
+        m_BackgroundShader = Shader::create(__get_abs_path__("/Asset/shader/back_ground.shader"));
+        m_IrradianceShader = Shader::create(__get_abs_path__("/Asset/shader/SkBox_Ir.shader"));
+        m_PrefilterShader = Shader::create(__get_abs_path__("/Asset/shader/SkBox_Pre.shader"));
+        m_BRDFShader = Shader::create(__get_abs_path__("/Asset/shader/SkBox_brdf.shader"));
 
         GenCube();
         GenQuad();
@@ -27,12 +27,13 @@ namespace evergarden {
 
     SkyBox_OpenGL::SkyBox_OpenGL(const std::string &FilePath) {
         m_Texture = Texture2D::create(FilePath, true);
-        
-        m_Eq2SkyBoxShader = Shader::create("D:/Project/Nebula-Engine/Asset/shader/Equirectangular.shader");
-        m_BackgroundShader = Shader::create("D:/Project/Nebula-Engine/Asset/shader/BackGround.shader");
-        m_IrradianceShader = Shader::create("D:/Project/Nebula-Engine/Asset/shader/Irradiance.shader");
-        m_PrefilterShader = Shader::create("D:/Project/Nebula-Engine/Asset/shader/PreFilter.shader");
-        m_BRDFShader = Shader::create("D:/Project/Nebula-Engine/Asset/shader/BRDF.shader");
+
+        // TODO
+        m_Eq2SkyBoxShader = Shader::create(__get_abs_path__("/Asset/shader/SkBox_eq.shader"));
+        m_BackgroundShader = Shader::create(__get_abs_path__("/Asset/shader/back_ground.shader"));
+        m_IrradianceShader = Shader::create(__get_abs_path__("/Asset/shader/SkBox_Ir.shader"));
+        m_PrefilterShader = Shader::create(__get_abs_path__("/Asset/shader/SkBox_Pre.shader"));
+        m_BRDFShader = Shader::create(__get_abs_path__("/Asset/shader/SkBox_brdf.shader"));
 
         GenCube();
         GenQuad();
@@ -40,7 +41,17 @@ namespace evergarden {
     }
 
     void SkyBox_OpenGL::bindSkyBox(Camera &camera, uint32_t enter) const {
-        glBindTextureUnit(enter, m_PrefilterMapID);
+        // glBindTextureUnit(enter, m_PrefilterMapID);
+        m_BackgroundShader->bind();
+        m_BackgroundShader->setMat4("projection", camera._ProjectionMatrix());
+        m_BackgroundShader->setMat4("view", camera._ViewMatrix());
+        glBindTextureUnit(enter, m_SkyBoxID);
+        RenderCube();
+    }
+
+    void SkyBox_OpenGL::bindSkyBox(uint32_t enter) const {
+        // glBindTextureUnit(enter, m_PrefilterMapID);
+        glBindTextureUnit(enter, m_SkyBoxID);
     }
 
     void SkyBox_OpenGL::bindIrradianceMap(uint32_t enter) const {
