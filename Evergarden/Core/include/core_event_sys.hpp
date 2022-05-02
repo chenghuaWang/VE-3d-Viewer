@@ -322,5 +322,19 @@ namespace evergarden {
 
 }
 
+namespace evergarden {
+
+	class Input {
+    public:
+        static bool 					IsKeyPressed(void* window, KeyCodes keycode);
+        static bool 					IsMouseButtonPressed(void* window, MouseCode button);
+        static std::pair<float, float> 	GetMousePosition(void* window);
+        static float 					GetMouseX(void* window);
+        static float 					GetMouseY(void* window);
+        static void 					SetCursorHidden(void* window, bool enable);
+    };
+
+}
+
 
 #endif //! H_CORE_EVENT_SYS
