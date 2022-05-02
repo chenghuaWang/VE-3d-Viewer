@@ -25,11 +25,11 @@ namespace evergarden {
             "colour"
         };
         static const char* idecls[] = {
-                "u_EmissionColor",
-                "u_Intensity",
-                "u_Material",
-                "u_UseNormalMap",
-                "u_HeightScale",
+                "cpu_EmissionColor",
+                "cpu_Intensity",
+                "cpu_Material",
+                "cpu_UseNormalMap",
+                "cpu_HeightScale",
                 "diffuse",
                 "specular",
                 "color",
@@ -42,6 +42,8 @@ namespace evergarden {
         }
         m_editor.SetLanguageDefinition(lang);
     }
+
+    // TODO Add break point functions.
 
     void Widget_ShaderEditor::onGuiRender() {
 
@@ -107,7 +109,7 @@ namespace evergarden {
                     ImGui::EndMenu();
                 }
 
-                if (ImGui::BeginMenu("Compile and Link")) {
+                if (ImGui::BeginMenu("Compile&Link")) {
                     if (ImGui::MenuItem("Compile Test")){
                         // TODO
                     }

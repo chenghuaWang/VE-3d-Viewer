@@ -43,3 +43,8 @@ void GLClearError();
 bool GLLogCall(const char* function, const char* file, int line);
 
 #endif
+
+#define RENDER_XSR(s) RENDER_SR(s)
+#define RENDER_SR(s) #s
+
+std::string __get_abs_path__(std::string a);
