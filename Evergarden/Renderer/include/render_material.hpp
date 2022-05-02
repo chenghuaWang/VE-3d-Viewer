@@ -45,7 +45,7 @@ namespace evergarden {
     
     public:
         ///< TODO
-        std::shared_ptr<Shader> m_Shader = Shader::create("D:/Project/Nebula-Engine/Asset/shader/Grid.shader");
+        std::shared_ptr<Shader> m_Shader = Shader::create(__get_abs_path__("/Asset/shader/default.shader"));
     };
 
     class EmissionMaterial :public Material {

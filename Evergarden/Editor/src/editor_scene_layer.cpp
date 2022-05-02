@@ -102,20 +102,7 @@ namespace evergarden {
     void Layer_MainCamera::onGuiRender() {
         if (c_WindowHandle) {
             ImGui::Begin("Camera Setting", &c_WindowHandle);
-            ImGui::Text("Attribute");
-
-            int type = static_cast<int>(c_CameraController.GetCamera()._CameraType()) - 1;
-            ImGui::Combo("type", (int*)&type, "Perspective\0Orthographic");
-            c_CameraController.GetCamera().setCameraType(static_cast<CameraType>(type + 1));
-
-            float nearPlane = c_CameraController.GetCamera()._NearPlane();
-            ImGui::DragFloat("near", (float*)&nearPlane, 0.1f);
-            nearPlane = nearPlane < 0 ? 0 : nearPlane;
-            c_CameraController.GetCamera().setNearPlane(nearPlane);
-            float farPlane = c_CameraController.GetCamera()._FarPlane();
-            ImGui::DragFloat("far", (float*)&farPlane, 0.1f);
-            farPlane = farPlane < nearPlane ? nearPlane + 0.1f : farPlane;
-            c_CameraController.GetCamera().setFarPlane(farPlane);
+            ImGui::Text("Camera");
 
             float fov = c_CameraController.GetCamera()._fov();
             ImGui::SliderFloat("fov", &fov, 0.1f, 45.0f, "%.1f");
@@ -137,7 +124,7 @@ namespace evergarden {
 
             ImGui::Separator();
 
-            ImGui::Text("Rotation");
+            ImGui::Text("Rotation setting");
             float pitch = c_CameraController.GetCamera()._Pitch();
             ImGui::DragFloat("Pitch", &pitch, 1.0f);
             c_CameraController.GetCamera().setPitch(pitch);

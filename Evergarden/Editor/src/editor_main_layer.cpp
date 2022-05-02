@@ -8,6 +8,7 @@
 #include "Renderer/include/render_component.hpp"
 #include "../include/editor_file_widget.hpp"
 #include "../include/editor_main_layer.hpp"
+#include "../include/editor_hia.hpp"
 #include <glm/gtc/type_ptr.hpp>
 
 namespace evergarden {
@@ -132,7 +133,7 @@ namespace evergarden {
                 s_ip->SetShowGrid(gridFlag);
                 ImGui::EndMenu();
             }
-            if (ImGui::BeginMenu("Environment"))
+            if (ImGui::BeginMenu("Effect"))
             {
                 //Load Skybox
                 if (ImGui::BeginMenu("Skybox"))
@@ -172,24 +173,11 @@ namespace evergarden {
                 ImGui::EndMenu();
             }
 
-            if (ImGui::BeginMenu("Component"))
-            {
-                if (ImGui::MenuItem("Material Component"))
-                    s_ew->AddComponent<MaterialComponent>();
-                if (ImGui::MenuItem("Mesh Component"))
-                    s_ew->AddComponent<MeshComponent>();
-                if (ImGui::MenuItem("Light Component"))
-                    s_ew->AddComponent<LightComponent>();
-                ImGui::EndMenu();
-            }
-
             if (ImGui::BeginMenu("Window"))
             {
-                ImGui::MenuItem("Hierachy", NULL, &s_ew->c_flag_showHierarchy);
+                ImGui::MenuItem("Component", NULL, &s_ew->c_flag_showHierarchy);
                 ImGui::MenuItem("Inspector", NULL, &s_ew->c_flag_showInspector);
-                ImGui::MenuItem("StyleEditor", NULL, &s_ew->c_flag_styleEditor);
                 ImGui::MenuItem("Terminal", NULL, &s_ew->c_flag_terminal);
-                ImGui::MenuItem("Show Demo Window", NULL, &s_ew->c_flag_demoWindow);
                 ImGui::MenuItem("Camera Setting", NULL, &s_mc->GetWindowHandle());
                 ImGui::EndMenu();
             }
@@ -306,6 +294,11 @@ namespace evergarden {
         if (MainEditorWidget::c_flag_demoWindow) {
             ImGui::ShowDemoWindow();
         }
+
+        if (MainEditorWidget::c_flag_showHierarchy) {
+            Hia::__on_show_hia__(&MainEditorWidget::c_flag_showHierarchy, Layer_Scene_instance);
+        }
+
         MainEditorWidget::AddObjectAnswer();
     }
 
