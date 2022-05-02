@@ -18,8 +18,6 @@
 #include "editor_file_utils.hpp"
 #include "editor_file_widget.hpp"
 #include "editor_log_layer.hpp"
-#include "editor_main_layer.hpp"
-#include "editor_scene_layer.hpp"
 #include "editor_se_layer.hpp"
 
 #endif //! H_EDITOR_CORE
