@@ -32,18 +32,21 @@ namespace evergarden {
     }
 
     void App::run() {
-        // m_time_frame.clear();
+        m_time_frame.clear();
         while (m_window_run) {
-            // m_time_frame.update(m_last_frame_time_cnt);
-            // m_last_frame_time_cnt += m_time_frame.getSeconds();
+            m_time_frame.update(m_last_frame_time_cnt);
+            m_last_frame_time_cnt += m_time_frame.getSeconds();
 
             if (!m_window_minimize) {
                 for (Layer* layer : m_layer_stack) {
                     layer->onUpdate();
+                    layer->onUpdate(m_time_frame);
                 }
                 m_imgui_initial_layer->begin();
                 {
-                    for (Layer* layer : m_layer_stack) layer->onGuiRender();
+                    for (Layer* layer : m_layer_stack) {
+                        layer->onGuiRender();
+                    }
                 }
                 m_imgui_initial_layer->end();
             }

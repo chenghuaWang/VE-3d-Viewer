@@ -16,7 +16,7 @@
 
 namespace evergarden {
 
-    class __declspec(dllexport) App {
+    class App {
     public:
         App(std::string window_name = "Evergarden");
         ~App();
@@ -27,6 +27,7 @@ namespace evergarden {
         void                        pushLayer(Layer* rhs);
         void                        popLayer(Layer* rhs);
         bool                        shutdown();
+        std::shared_ptr<MainWindow> getWindow() { return m_window; };
 
     public:
         static App*                 create(); 
