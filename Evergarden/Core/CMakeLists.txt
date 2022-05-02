@@ -20,8 +20,8 @@ include_directories(${IMGUI_INCLUDE})
 include_directories(${GLFW_INCLUDE})
 include_directories(${GLAD_INCLUDE})
 
-file(GLOB_RECURSE Evergarden_Core src/*.cpp)
-file(GLOB_RECURSE Evergarden_Core include/*.hpp)
+file(GLOB_RECURSE Evergarden_Core_src src/*.cpp)
+file(GLOB_RECURSE Evergarden_Core_include include/*.hpp)
 
 set(Evergarden_Core_3rd 
   ${IMG_SRC} 

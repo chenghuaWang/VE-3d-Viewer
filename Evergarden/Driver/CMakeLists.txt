@@ -31,4 +31,7 @@ add_executable(Evergarden main.cpp)
 
 target_link_libraries(Evergarden
   Evergarden_App
+  Evergarden_Core
+  Evergarden_Editor
+  Evergarden_Renderer
 )
